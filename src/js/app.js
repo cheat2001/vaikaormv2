@@ -9,10 +9,45 @@ const buttonClickAudio=new Audio("../../audio/button-click.mp3");
 const trackingPlay=document.querySelector(".tracking-play");
 let music;
 let lastDatePlayed;
-// let currentDate = new Date().toLocaleDateString();
-let currentDate = "04/13/2023";
+let currentDate = new Date().toLocaleDateString();
+
+// All the image that needed to be preloaded
+const images = [
+  '../../images/gift/ajinomoto.png',
+  '../../images/gift/amazon.png',
+  '../../images/gift/angkorBeer.png',
+  '../../images/gift/canfish.png',
+  '../../images/gift/coca.png',
+  '../../images/gift/egg.png',
+  '../../images/gift/freshy.png',
+  '../../images/gift/hoe.png',
+  '../../images/gift/koi.png',
+  '../../images/gift/kroma.png',
+  '../../images/gift/mama.png',
+  '../../images/gift/pen.png',
+  '../../images/gift/rice.png',
+  '../../images/gift/salt.png',
+  '../../images/gift/tigerBeer.png',
+  '../../images/gift/vital.png',
+  '../../images/gif/giphy.gif',
+];
+
+
+// All the audio that needed to be preloaded
+
+const audios=[
+  "../../audio/boy-kh.mp3",
+  "../../audio/brokeheart.mp3",
+  "../../audio/siemreap.mp3",
+  "../../audio/ss.mp3",
+  "../../audio/ToyToy.mp3",
+  "../../audio/Young-Wild-and-Free.mp3",
+]
+
+// create an array to store the preloaded audio elements
+const preloadedAudio = [];
+
 window.onload=()=>{
-  console.log(currentDate);
   if (localStorage.getItem("playCount") === null) {
     localStorage.setItem("playCount", 0);
   }
@@ -28,26 +63,26 @@ window.onload=()=>{
     localStorage.setItem('playCount', 0);
     localStorage.setItem('lastDatePlayed', currentDate);
   }
-  preloadImages([
-    'https://vaikaormv2.web.app/images/gift/ajinomoto.png',
-    'https://vaikaormv2.web.app/images/gift/amazon.png',
-    'https://vaikaormv2.web.app/images/gift/angkorBeer.png',
-    'https://vaikaormv2.web.app/images/gift/canfish.png',
-    'https://vaikaormv2.web.app/images/gift/coca.png',
-    'https://vaikaormv2.web.app/images/gift/egg.png',
-    'https://vaikaormv2.web.app/images/gift/freshy.png',
-    'https://vaikaormv2.web.app/images/gift/hoe.png',
-    'https://vaikaormv2.web.app/images/gift/koi.png',
-    'https://vaikaormv2.web.app/images/gift/kroma.png',
-    'https://vaikaormv2.web.app/images/gift/mama.png',
-    'https://vaikaormv2.web.app/images/gift/pen.png',
-    'https://vaikaormv2.web.app/images/gift/rice.png',
-    'https://vaikaormv2.web.app/images/gift/salt.png',
-    'https://vaikaormv2.web.app/images/gift/tigerBeer.png',
-    'https://vaikaormv2.web.app/images/gift/vital.png',
-    'https://vaikaormv2.web.app/images/gif/giphy.gif',
+
+
+
+  // Load all the images
+
+// Loop through the image paths and create new Image objects
+images.forEach(path => {
+  const img = new Image();
+  img.src = path;
+});
+
+
+
+// loop through the audio files array and create new audio elements for each file
+audios.forEach(file => {
+  const audio = new Audio();
+  audio.src = file;
+  preloadedAudio.push(audio);
+});
   
-  ]);
 }
 
 let count=0;
@@ -291,15 +326,6 @@ setTimeout(() => {
 
 
 
-
-// Loading Image
-
-function preloadImages(imageUrls) {
-  imageUrls.forEach(function(url) {
-    var img = new Image();
-    img.src = url;
-  });
-}
 
 
 
